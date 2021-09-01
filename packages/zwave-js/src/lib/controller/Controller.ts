@@ -3451,7 +3451,8 @@ ${associatedNodes.join(", ")}`,
 				ZWaveErrorCodes.Driver_NotSupported,
 			);
 		}
-		// TODO: Issue soft reset
+
+		if (result.success) await this.softReset();
 		return result.success;
 	}
 
@@ -3845,6 +3846,6 @@ ${associatedNodes.join(", ")}`,
 		// Turn Z-Wave radio back on
 		await this.toggleRF(true);
 
-		// TODO: Soft Reset
+		await this.softReset();
 	}
 }
